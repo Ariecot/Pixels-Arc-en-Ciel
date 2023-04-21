@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Carrés arc-en-ciel</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+      .carre {
+        background-color: red;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var couleurs = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+      var index = 0;
+      var tailleCarre = 50;
+      var nbColonnes = Math.ceil(window.innerWidth / tailleCarre);
+      var nbLignes = Math.ceil(window.innerHeight / tailleCarre);
+      for (var i = 0; i < nbColonnes; i++) {
+        for (var j = 0; j < nbLignes; j++) {
+          var carre = document.createElement("div");
+          carre.className = "carre";
+          carre.style.top = (j * tailleCarre  ) + "px";
+          carre.style.left = (i * tailleCarre ) + "px";
+          carre.style.width = tailleCarre + "px";
+          carre.style.height = tailleCarre + "px";
+          carre.addEventListener("mouseover", function() {
+            this.style.backgroundColor = couleurs[index];
+            index = (index + 1) % couleurs.length;
+          });
+          document.body.appendChild(carre);
+        }
+      }
+    </script>
+  </body>
+</html>
